@@ -1,11 +1,19 @@
 import { signs } from './data/sings.tsx'
 import { Link } from 'react-router-dom'
 import { useLanguage } from './components/LanguageContext.tsx'
+import { useTelegram } from './hooks/useTelegram.ts'
+import { useEffect } from 'react'
 
 
 function App() {
   const { language } = useLanguage()
+  const { ready, expand, isExpanded } = useTelegram()
+  useEffect(() => {
+    ready()
+    expand()
 
+  }, [])
+  console.log(isExpanded)
   return (
     <div className={'mt-2'}>
       <ul className={'grid grid-cols-2 w-full'}>{signs.map((item) => (
