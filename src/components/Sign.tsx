@@ -41,8 +41,15 @@ const Sign = () => {
       sign,
       language,
       period
-    }).then(data => setDescription(data.data.horoscope))
-    setLoading(false)
+    })
+      .then(data => {
+        setDescription(data.data.horoscope)
+        setLoading(false)
+      })
+      .catch(error => {
+        console.error('Error fetching horoscope:', error)
+        setLoading(false)
+      })
   }, [sign, period, language])
   return (
     <div onTouchEnd={handleSwipe} className={'p-3 flex flex-col items-center gap-y-2 icon'}>
